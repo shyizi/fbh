@@ -74,13 +74,14 @@ def create_eink_image(events):
     im = Image.new('1', (SCREEN_W, SCREEN_H), 1)
     draw = ImageDraw.Draw(im)
 
-    try:
-        font_title = ImageFont.truetype("simhei.ttf", 20)
-        font_text = ImageFont.truetype("simhei.ttf", 14)
-    except:
-        font_title = ImageFont.load_default(size=20)
-        font_text = ImageFont.load_default(size=14)
+    # ==============================================
+    # ✅ 已修复：强制使用你上传的 font.ttf 字体
+    # ==============================================
+    font_path = "./font.ttf"
+    font_title = ImageFont.truetype(font_path, 20)
+    font_text  = ImageFont.truetype(font_path, 14)
 
+    # 标题
     draw.text((10, 6), "科技新品发布会监控", font=font_title, fill=0)
     draw.line((10, 33, SCREEN_W-10, 33), fill=0, width=1)
 
